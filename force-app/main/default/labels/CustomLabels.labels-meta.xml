@@ -297,6 +297,14 @@
         <value>logged a call with</value>
     </labels>
     <labels>
+        <fullName>logged_a_call</fullName>
+        <categories>Activity Timeline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>logged a call</shortDescription>
+        <value>logged a call</value>
+    </labels>
+    <labels>
         <fullName>logged_a_task</fullName>
         <categories>Activity Timeline</categories>
         <language>en_US</language>

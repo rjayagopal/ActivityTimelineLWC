@@ -22,6 +22,7 @@ import have_a_task from '@salesforce/label/c.have_a_task';
 import created_a_task_with from '@salesforce/label/c.created_a_task_with';
 import logged_a_task from '@salesforce/label/c.logged_a_task';
 import logged_a_call_with from '@salesforce/label/c.logged_a_call_with';
+import logged_a_call from '@salesforce/label/c.logged_a_call';
 import sent_an_email from '@salesforce/label/c.sent_an_email';
 import sent_an_email_to from '@salesforce/label/c.sent_an_email_to';
 import Name from '@salesforce/label/c.Name';
@@ -81,6 +82,7 @@ export default class TimelineItemTask extends NavigationMixin(LightningElement) 
         created_a_task_with,
         logged_a_task,
         logged_a_call_with,
+        logged_a_call,
         sent_an_email,
         sent_an_email_to,
         Name,

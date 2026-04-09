@@ -98,7 +98,7 @@
                     </p>
                     <p if:true={isCall} class="slds-var-m-horizontal_xx-small">
                         <a onclick={navigateToOwner}>{assignedToName}</a>
-                        <span if:false={hasWhoTo}> {label.logged_a_task}</span>
+                        <span if:false={hasWhoTo}> {label.logged_a_call}</span>
                         <span if:true={hasWhoTo}> {label.logged_a_call_with}&nbsp;</span>
                         <a if:true={hasWhoTo} onclick={navigateToWho}>{whoToName}</a>
                     </p>
