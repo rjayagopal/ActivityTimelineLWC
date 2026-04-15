@@ -10,8 +10,10 @@
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
     </targets>
+    <capabilities>
+        <capability>lightningCommunity__RelaxedCSP</capability>
+    </capabilities>
     <targetConfigs>
-        
         <targetConfig targets="lightning__RecordPage">
             <property name="configId" type="String" label="Record Id, Name or External Key of the Timeline configuration to use"/>
             <property name="pageSize" type="Integer" label="Set timeline item size for each page, default 20 "/>

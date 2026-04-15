@@ -22,6 +22,7 @@ import have_a_task from '@salesforce/label/c.have_a_task';
 import created_a_task_with from '@salesforce/label/c.created_a_task_with';
 import logged_a_task from '@salesforce/label/c.logged_a_task';
 import logged_a_call_with from '@salesforce/label/c.logged_a_call_with';
+import logged_a_call from '@salesforce/label/c.logged_a_call';
 import sent_an_email from '@salesforce/label/c.sent_an_email';
 import sent_an_email_to from '@salesforce/label/c.sent_an_email_to';
 import Name from '@salesforce/label/c.Name';
@@ -65,6 +66,7 @@ export default class TimelineItemTask extends NavigationMixin(LightningElement) 
     @track toAddresses;
     @track ccAddresses;
     @track firstRecipient;
+    @track fromAddress;
     @api fieldData;
     @api displayRelativeDates;
     @api taskClosedStatus;
@@ -81,6 +83,7 @@ export default class TimelineItemTask extends NavigationMixin(LightningElement) 
         created_a_task_with,
         logged_a_task,
         logged_a_call_with,
+        logged_a_call,
         sent_an_email,
         sent_an_email_to,
         Name,
@@ -125,7 +128,13 @@ export default class TimelineItemTask extends NavigationMixin(LightningElement) 
         if (data) {
             if (data.ActivityId) {
                 // its data from the EmailMessage object
+                if (data.FromName == null || String(data.FromName).trim() === '') {
+                    this.fromAddress = data.FromAddress;
+                } else {
+                    this.fromAddress = undefined;
+                }
                 this.assignedToName=data.FromName;
+
                 this.description=data.TextBody;
                 this.recordId=data.Id;
                 this.activityId=data.ActivityId;
@@ -219,6 +228,27 @@ export default class TimelineItemTask extends NavigationMixin(LightningElement) 
 
     get isEmail(){
         return this.taskSubtype === "Email";
+    }
+
+    get emailSenderDisplayName() {
+        if (this.assignedToName != null && String(this.assignedToName).trim() !== '') {
+            return this.assignedToName;
+        }
+        return this.fromAddress;
+    }
+
+    get emailSenderUsesFromAddressOnly() {
+        if (this.assignedToName != null && String(this.assignedToName).trim() !== '') {
+            return false;
+        }
+        return this.fromAddress != null && String(this.fromAddress).trim() !== '';
+    }
+
+    get fromAddressMailtoHref() {
+        if (!this.fromAddress) {
+            return '';
+        }
+        return `mailto:${this.fromAddress}`;
     }
 
     get hasWhoTo(){

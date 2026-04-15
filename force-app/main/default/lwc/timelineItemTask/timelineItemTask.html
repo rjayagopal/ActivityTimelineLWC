@@ -98,12 +98,17 @@
                     </p>
                     <p if:true={isCall} class="slds-var-m-horizontal_xx-small">
                         <a onclick={navigateToOwner}>{assignedToName}</a>
-                        <span if:false={hasWhoTo}> {label.logged_a_task}</span>
+                        <span if:false={hasWhoTo}> {label.logged_a_call}</span>
                         <span if:true={hasWhoTo}> {label.logged_a_call_with}&nbsp;</span>
                         <a if:true={hasWhoTo} onclick={navigateToWho}>{whoToName}</a>
                     </p>
                     <p if:true={isEmail} class="slds-var-m-horizontal_xx-small">
-                        <a onclick={navigateToOwner}>{assignedToName}</a>
+                        <template if:true={emailSenderUsesFromAddressOnly}>
+                            <a href={fromAddressMailtoHref}>{emailSenderDisplayName}</a>
+                        </template>
+                        <template if:false={emailSenderUsesFromAddressOnly}>
+                            <a onclick={navigateToOwner}>{emailSenderDisplayName}</a>
+                        </template>
                         <span if:false={hasWhoTo}> {label.sent_an_email}</span>
                         <span if:true={hasWhoTo}> {label.sent_an_email_to} </span>
                         <a if:true={hasWhoTo} onclick={navigateToWho}>{whoToName}</a>
